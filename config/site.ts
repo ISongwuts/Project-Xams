@@ -1,69 +1,42 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-	name: "Next.js + NextUI",
+	name: "Xams",
 	description: "Make beautiful websites regardless of your design experience.",
 	navItems: [
 		{
 			label: "Home",
 			href: "/",
 		},
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
-      href: "/about",
-    }
+		{
+			label: "All Courses",
+			href: "/allcourses",
+		},
+		{
+			label: "About",
+			href: "/about",
+		},
+		{
+			label: "Contact Us",
+			href: "/contact",
+		}
 	],
 	navMenuItems: [
 		{
-			label: "Profile",
-			href: "/profile",
+			label: "All Courses",
+			href: "/allcourses",
 		},
 		{
-			label: "Dashboard",
-			href: "/dashboard",
+			label: "About",
+			href: "/about",
 		},
 		{
-			label: "Projects",
-			href: "/projects",
-		},
-		{
-			label: "Team",
-			href: "/team",
-		},
-		{
-			label: "Calendar",
-			href: "/calendar",
-		},
-		{
-			label: "Settings",
-			href: "/settings",
+			label: "Contact Us",
+			href: "/contact",
 		},
 		{
 			label: "Help & Feedback",
 			href: "/help-feedback",
 		},
-		{
-			label: "Logout",
-			href: "/logout",
-		},
 	],
-	links: {
-		github: "https://github.com/nextui-org/nextui",
-		twitter: "https://twitter.com/getnextui",
-		docs: "https://nextui.org",
-		discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev"
-	},
 };
