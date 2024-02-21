@@ -59,14 +59,9 @@ export const siteConfig = {
 				name: 'prefix'
 			},
 			{
-				label: 'First Name',
-				type: 'text',
-				name: 'first_name'
-			},
-			{
-				label: 'Last Name',
-				type: 'text',
-				name: 'last_name'
+				label: 'Full Name',
+				type: 'Full Name',
+				name: 'Full Name'
 			},
 			{
 				label: 'Password',

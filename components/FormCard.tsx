@@ -13,6 +13,10 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ZodSchema } from 'zod'
 import authAction from '@/action/form-action.auth'
+import { RadioGroup } from '@nextui-org/radio'
+import { CustomRadio } from './custom/CustomRadio'
+import { cn } from '@nextui-org/system'
+import { Select, SelectItem } from '@nextui-org/select'
 
 interface PropsType {
     title: string,
@@ -41,11 +45,12 @@ function FormCard(props: PropsType) {
         handleSubmit,
         reset,
         formState: { errors },
-      } = useForm({
+    } = useForm({
         resolver: zodResolver(props.schema),
-      })
+    })
+    const prefixs = ['นาย', 'นาง', 'นางสาว']
     return (
-        <Card className=' bg-background w-[75%]'>
+        <Card className=' bg-background w-full'>
             <CardHeader className='flex justify-center text-2xl font-bold'><span>{props.title}</span></CardHeader>
             <CardBody className={`flex flex-row max-sm:flex-col gap-6 ${props.isSignIn ? 'flex-row-reverse' : null}`}>
                 <Slide isSignIn={props.isSignIn}>
@@ -63,9 +68,53 @@ function FormCard(props: PropsType) {
                 </Slide>
 
                 <FadeIn>
-                    <form action="" onSubmit={handleSubmit(authAction)} className='w-full flex flex-col gap-3 justify-center'>
+                    {!props.isSignIn &&
+                        <RadioGroup orientation='horizontal'
+                            className={cn(
+                                'flex flex-row justify-center w-full'
+                            )}>
+                            <CustomRadio value='student' description="Your role is student!.">Student</CustomRadio>
+                            <CustomRadio value='teacher' description="Your role is teacher!.">Teacher</CustomRadio>
+                        </RadioGroup>
+                    }
+                    <form action="" onSubmit={handleSubmit(authAction)} className='w-full flex flex-col gap-2 justify-center px-8'>
                         {
-                            props.form.map((attribute, index) => <Input key={index} errorMessage={errors[attribute.name] ? String(errors[attribute.name]?.message) : ''} {...register(attribute.name)} {...attribute} variant='underlined' />)
+                            props.form.map((attribute, index) => (
+                                attribute.label === 'Prefix' ?
+                                    <Select variant='underlined' placeholder='Choose your prefix.'>
+                                        {
+                                            prefixs.map((prefix, index) => <SelectItem key={index} value={prefix}>{prefix}</SelectItem>)
+                                        }
+                                    </Select>
+                                    :
+                                    attribute.label === 'Full Name' ?
+                                        <div className='flex gap-4'>
+                                            <Input
+                                                key={index}
+                                                errorMessage={errors['first_name'] ? String(errors['first_name']?.message) : ''}
+                                                {...register('first_name')}
+                                                label='First Name'
+                                                type='text'
+                                                variant='underlined'
+                                            />
+                                            <Input
+                                                key={index}
+                                                errorMessage={errors['last_name'] ? String(errors['last_name']?.message) : ''}
+                                                {...register('last_name')}
+                                                label='Last Name'
+                                                type='text'
+                                                variant='underlined'
+                                            />
+                                        </div>
+                                        :
+                                        <Input
+                                            key={index}
+                                            errorMessage={errors[attribute.name] ? String(errors[attribute.name]?.message) : ''}
+                                            {...register(attribute.name)}
+                                            {...attribute}
+                                            variant='underlined'
+                                        />
+                            ))
                         }
                         <ButtonGroup className='my-4'>
                             <Button type='submit' className=' bg-primary-gradient text-[#eee]'>{props.isSignIn ? 'Sign In' : 'Sign Up'}</Button>
@@ -75,7 +124,7 @@ function FormCard(props: PropsType) {
                         {
                             props.isSignIn &&
                             <div className='flex justify-around'>
-                                <Link>Forgot password ?</Link>
+                                <Link className='cursor-pointer' href='/auth/forgotpassword'>Forgot password ?</Link>
                                 <Checkbox> Remember me</Checkbox>
                             </div>
 
