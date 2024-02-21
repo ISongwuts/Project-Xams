@@ -1,4 +1,7 @@
-export type SiteConfig = typeof siteConfig;
+import Book from '@/public/assets/images/book.png'
+import Kid from '@/public/assets/images/kid.png'
+export type SiteConfig = typeof siteConfig
+
 
 export const siteConfig = {
 	name: "Xams",
@@ -38,5 +41,72 @@ export const siteConfig = {
 			label: "Help & Feedback",
 			href: "/help-feedback",
 		},
+		{
+			label: "Not a member?",
+			href: "/auth/signin",
+		},
 	],
+	formConfig: {
+		signUpForm: {
+			attribute: [{
+				label: 'Username',
+				type: 'text',
+				name: 'username'
+			},
+			{
+				label: 'Prefix',
+				type: 'text',
+				name: 'prefix'
+			},
+			{
+				label: 'First Name',
+				type: 'text',
+				name: 'first_name'
+			},
+			{
+				label: 'Last Name',
+				type: 'text',
+				name: 'last_name'
+			},
+			{
+				label: 'Password',
+				type: 'password',
+				name: 'password'
+			},
+			{
+				label: 'Telephone',
+				type: 'text',
+				name: 'tel'
+			},
+			{
+				label: 'Personal ID',
+				type: 'text',
+				name: 'personal_id'
+			}],
+			sideCard: {
+				cardTitle: 'Start your education with us.',
+				cardDescription: 'Students can easily submit assignments directly through the platform. Upload documents, presentations, or multimedia files, and receive instant confirmation upon submission.',
+				cardImage: Kid
+			}
+		},
+		signInForm: {
+			attribute: [{
+				label: 'Username',
+				type: 'text',
+				name: 'username'
+			},
+			{
+				label: 'Password',
+				type: 'password',
+				name: 'password'
+			},],
+			sideCard: {
+				cardTitle: 'Ace Your Exams and Assignments!',
+				cardDescription: 'Prepare for exams and complete assignments effortlessly with our intuitive platform. Access study materials, submit assignments, and track your progress seamlessly. Stay organized and excel academically!',
+				cardImage: Book
+			}
+		}
+
+	},
+
 };

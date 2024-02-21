@@ -3,7 +3,6 @@ import { Card, CardHeader, CardBody, CardFooter } from "@nextui-org/card";
 import { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import { Button } from '@nextui-org/button';
-import { Divider } from '@nextui-org/divider';
 
 interface PropsType {
     image: StaticImageData,

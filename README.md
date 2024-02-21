@@ -13,7 +13,9 @@ This is a template for creating applications using Next.js 13 (app directory) an
 - [next-themes](https://github.com/pacocoursey/next-themes)
 
 ## How to Use
-
+Manual is comming soon...
+## Preview
+<img src='/public/assets/images/screenshots/xams-preview.PNG'/>
 
 ### Use the template with create-next-app
 

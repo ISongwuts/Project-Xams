@@ -1,3 +1,4 @@
+"use client"
 import {
 	Navbar as NextUINavbar,
 	NavbarContent,
@@ -20,13 +21,15 @@ import clsx from "clsx";
 
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
-	GithubIcon,
 	SearchIcon,
 } from "@/components/icons";
+
+import { useRouter } from "next/navigation";
 
 import { Logo } from "@/components/icons";
 
 export const Navbar = () => {
+	const router = useRouter();
 	const searchInput = (
 		<Input
 			aria-label="Search"
@@ -48,12 +51,16 @@ export const Navbar = () => {
 		/>
 	);
 
+	const goToAuthPath = () => {
+		router.push('/auth/signin')
+	}
+
 	return (
 		<NextUINavbar maxWidth="xl" position="sticky" className=" bg-primary-gradient font-semibold">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
 					<NextLink className="flex justify-start items-center gap-1" href="/">
-						<Logo />
+						<Logo/>
 						<p className="font-bold text-inherit text-xl">XAMS</p>
 					</NextLink>
 				</NavbarBrand>
@@ -79,14 +86,16 @@ export const Navbar = () => {
 				className="hidden sm:flex basis-1/5 sm:basis-full"
 				justify="end"
 			>
-				<NavbarItem className="hidden sm:flex gap-2">
+				<NavbarItem className="hidden sm:flex gap-6">
 					<ThemeSwitch />
+					<Button className="bg-transparent font-bold shadow-inner  shadow-green-900" onClick={goToAuthPath}>Sign In</Button>
 				</NavbarItem>
 
 			</NavbarContent>
 
 			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
 				<ThemeSwitch />
+				<Button className="bg-transparent font-bold shadow-inner shadow-green-900" onClick={goToAuthPath}>Sign In</Button>
 				<NavbarMenuToggle />
 			</NavbarContent>
 
