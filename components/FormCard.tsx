@@ -12,7 +12,7 @@ import { Slide, FadeIn } from './animation/animation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ZodSchema } from 'zod'
-import authAction from '@/action/form-action.auth'
+import authAction from '@/services/actions/form-action.auth'
 import { RadioGroup } from '@nextui-org/radio'
 import { CustomRadio } from './custom/CustomRadio'
 import { cn } from '@nextui-org/system'
@@ -81,16 +81,15 @@ function FormCard(props: PropsType) {
                         {
                             props.form.map((attribute, index) => (
                                 attribute.label === 'Prefix' ?
-                                    <Select variant='underlined' placeholder='Choose your prefix.'>
+                                    <Select {...register(attribute.name)} key={index} variant='underlined' placeholder='Choose your prefix.'>
                                         {
                                             prefixs.map((prefix, index) => <SelectItem key={index} value={prefix}>{prefix}</SelectItem>)
                                         }
                                     </Select>
                                     :
                                     attribute.label === 'Full Name' ?
-                                        <div className='flex gap-4'>
+                                        <div key={index} className='flex gap-4'>
                                             <Input
-                                                key={index}
                                                 errorMessage={errors['first_name'] ? String(errors['first_name']?.message) : ''}
                                                 {...register('first_name')}
                                                 label='First Name'
@@ -98,7 +97,6 @@ function FormCard(props: PropsType) {
                                                 variant='underlined'
                                             />
                                             <Input
-                                                key={index}
                                                 errorMessage={errors['last_name'] ? String(errors['last_name']?.message) : ''}
                                                 {...register('last_name')}
                                                 label='Last Name'

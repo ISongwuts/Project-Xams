@@ -10,8 +10,12 @@ export const signUpSchema: ZodSchema = z.object({
     first_name: z.string({ required_error: 'First name is required.' }).nonempty({ message: 'First name is required.'}),
     last_name: z.string({ required_error: 'Last name is required.' }).nonempty({ message: 'Last name is required.'}),
     password: passwordSchema ,
+    confirm_password: z.string({ required_error: 'Password is required.' }).nonempty({ message: 'Password is required.'}).min(8, { message: 'Password is too short.' }),
     tel: z.string({ required_error: 'Telephone is required.' }).nonempty({ message: 'Telephone is required.'}),
     personal_id: z.string({ required_error: 'Personal ID is required.' }).nonempty({ message: 'Personal ID is required.'})
+}).refine((name) => name.password === name.confirm_password, {
+    message: "Passwords don't match",
+    path: ["confirm_password"],
 });
 
 export const signInSchema: ZodSchema = z.object({

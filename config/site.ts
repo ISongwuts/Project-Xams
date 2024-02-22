@@ -69,6 +69,11 @@ export const siteConfig = {
 				name: 'password'
 			},
 			{
+				label: 'Confirm Password',
+				type: 'password',
+				name: 'confirm_password'
+			},
+			{
 				label: 'Telephone',
 				type: 'text',
 				name: 'tel'
