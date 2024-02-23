@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,15 +7,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// For users model terms.
+
+enum Prefix {
+  prefix_1 @map("นาย")
+  prefix_2 @map("นาง")
+  prefix_3 @map("นางสาว")
+  prefix_4 @map("Mr.")
+  prefix_5 @map("Mrs.")
+  prefix_6 @map("Ms.")
+  prefix_7 @map("Miss")
+}
+
+enum Role {
+  role_1 @map("student")
+  role_2 @map("teacher")
+  role_3 @map("admin")
+}
+
 model users {
-  user_id String @id
-  username String @unique
-  prefix String
-  first_name String
-  last_name String
-  password String 
-  tel String
-  personal_id String
-  role String
-  createAt String
+  user_id String @id @default(cuid())
+  username String @unique @db.VarChar(50)
+  prefix Prefix?
+  first_name String @db.VarChar(50)
+  last_name String @db.VarChar(50)
+  password String @db.VarChar(255)
+  tel String @db.VarChar(10)
+  personal_id String @db.VarChar(20)
+  role Role?
+  createAt DateTime @default(now())
 }
