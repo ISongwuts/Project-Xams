@@ -1,7 +1,14 @@
 'use client'
 import { z, ZodSchema } from 'zod';
 
-const usernameSchema = z.string({ required_error: 'Username is required.' }).nonempty({ message: 'Username is required.'}).min(5, { message: 'Username is too short.' });
+
+const containsSpecialCharacter = (value:string) => /[!@#$%^&*(),.?":{}|<>]/.test(value);
+const usernameSchema = z.string({ required_error: 'Username is required.' })
+                        .nonempty({ message: 'Username is required.'})
+                        .min(5, { message: 'Username is too short.' })
+                        .refine(value => !containsSpecialCharacter(value), {
+                            message: 'Username cannot contain special characters.'
+                        });
 const passwordSchema = z.string({ required_error: 'Password is required.' }).nonempty({ message: 'Password is required.'}).min(8, { message: 'Password is too short.' });
 
 export const signUpSchema: ZodSchema = z.object({

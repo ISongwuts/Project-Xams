@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, CardBody, CardHeader, CardFooter } from '@nextui-org/card'
 import { Input } from '@nextui-org/input'
 import Image, { StaticImageData } from 'next/image'
@@ -17,6 +17,8 @@ import { RadioGroup } from '@nextui-org/radio'
 import { CustomRadio } from './custom/CustomRadio'
 import { cn } from '@nextui-org/system'
 import { Select, SelectItem } from '@nextui-org/select'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 interface PropsType {
     title: string,
@@ -48,13 +50,28 @@ function FormCard(props: PropsType) {
     } = useForm({
         resolver: zodResolver(props.schema),
     })
-    const prefixs = ['นาย', 'นาง', 'นางสาว']
+    const prefixs = ['นาย', 'นาง', 'นางสาว', "Mr.", "Mrs.", "Ms.", "Miss"]
+    const [role, setRole] = useState('');
+
+    const onPassingToAuthAction = async (formValue: any) => {
+        console.log(formValue)
+        const response = await authAction(formValue, props.isSignIn, role)
+
+        if(response.status.ok){
+            toast.success(response.message)
+            router.push('/dashboard')
+        }else{
+            toast.error(response.message)
+            console.log(response.message)
+        }
+    }
+
     return (
         <Card className=' bg-background w-full'>
             <CardHeader className='flex justify-center text-2xl font-bold'><span>{props.title}</span></CardHeader>
             <CardBody className={`flex flex-row max-sm:flex-col gap-6 ${props.isSignIn ? 'flex-row-reverse' : null}`}>
                 <Slide isSignIn={props.isSignIn}>
-                    <Card className='bg-primary-gradient'>
+                    <Card className='bg-primary-gradient text-white'>
                         <CardHeader><span>XAMS</span></CardHeader>
                         <CardBody className='flex flex-col items-center py-4 px-8 gap-4'>
                             <span className='text-3xl font-bold'>{props.sideCard.cardTitle}</span>
@@ -66,22 +83,32 @@ function FormCard(props: PropsType) {
                         </CardFooter>
                     </Card>
                 </Slide>
-
                 <FadeIn>
                     {!props.isSignIn &&
-                        <RadioGroup orientation='horizontal'
+                        <RadioGroup key={'dsd'} defaultValue='teacher' value={role} onValueChange={setRole} orientation='horizontal'
                             className={cn(
                                 'flex flex-row justify-center w-full'
                             )}>
+
                             <CustomRadio value='student' description="Your role is student!.">Student</CustomRadio>
                             <CustomRadio value='teacher' description="Your role is teacher!.">Teacher</CustomRadio>
                         </RadioGroup>
                     }
-                    <form action="" onSubmit={handleSubmit(authAction)} className='w-full flex flex-col gap-2 justify-center px-8'>
+                    <form
+                        method='POST'
+                        onSubmit={handleSubmit(onPassingToAuthAction)}
+                        className='w-full flex flex-col gap-2 justify-center px-8'>
+
                         {
                             props.form.map((attribute, index) => (
                                 attribute.label === 'Prefix' ?
-                                    <Select {...register(attribute.name)} key={index} variant='underlined' placeholder='Choose your prefix.'>
+                                    <Select
+                                        aria-label='prefix-selector'
+                                        key={index}
+                                        variant='underlined'
+                                        placeholder='Choose your prefix.'
+                                        {...register(attribute.name)}
+                                    >
                                         {
                                             prefixs.map((prefix, index) => <SelectItem key={index} value={prefix}>{prefix}</SelectItem>)
                                         }
@@ -114,7 +141,7 @@ function FormCard(props: PropsType) {
                                         />
                             ))
                         }
-                        <ButtonGroup className='my-4'>
+                        <ButtonGroup aria-label='btn-group' className='my-4'>
                             <Button type='submit' className=' bg-primary-gradient text-[#eee]'>{props.isSignIn ? 'Sign In' : 'Sign Up'}</Button>
                             <Divider orientation='vertical' className=' bg-green-950 ' />
                             <Button onClick={() => router.push(props.toPath)}>{props.isSignIn ? 'Not a member ?' : 'Already member ?'}</Button>

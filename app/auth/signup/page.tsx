@@ -1,7 +1,7 @@
 import React from 'react'
 import FormCard from '@/components/FormCard'
 import { siteConfig } from '@/config/site'
-import { signUpSchema } from '@/validation/schema'
+import { signUpSchema } from '@/services/validation/schema'
 
 function page() {
     
