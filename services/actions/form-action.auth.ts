@@ -4,7 +4,6 @@
 import { prisma } from "../utils/prismaInstance"
 import { Prefix, Role } from "@prisma/client"
 import bcrypt from 'bcrypt'
-import { cookies } from 'next/headers'
 // Define the type for the authentication action response
 type authActionType = {
     status: {
