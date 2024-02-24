@@ -1,5 +1,6 @@
 import { SVGProps } from "react";
 import { SessionOptions } from "iron-session";
+import { Prefix, Role } from "@prisma/client";
 
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
@@ -18,8 +19,8 @@ export interface UserType {
   last_name?: string
   password?: string
   personal_id?: string
-  prefix?: string
-  role?: string
+  prefix?: Prefix
+  role?: Role
   tel?: string
   user_id?: string
   username?: string

@@ -4,6 +4,8 @@
 import { prisma } from "../utils/prismaInstance"
 import { Prefix, Role } from "@prisma/client"
 import bcrypt from 'bcrypt'
+import { login } from "../libs/auth.lib"
+
 // Define the type for the authentication action response
 type authActionType = {
     status: {
@@ -39,7 +41,7 @@ export default async function authAction(formValue: any, isSignIn: boolean, role
                 // Return success message if password matches
                 if (passwordIsMatch) {
                     console.log('Sign In Successfully')
-                    
+                    login(user[0])
                     return {
                         status: { ok: true },
                         message: 'Sign In Successfully',
@@ -84,7 +86,7 @@ export default async function authAction(formValue: any, isSignIn: boolean, role
                     role: Object.values(Role)[role === 'student' ? 0 : 1]
                 }
             })
-
+            login(newUser)
             // Return success message with new user data
             return {
                 status: { ok: true },

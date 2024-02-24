@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
+    "@nextui-org/avatar": "^2.0.24",
     "@nextui-org/button": "2.0.26",
     "@nextui-org/card": "^2.0.24",
     "@nextui-org/checkbox": "^2.0.25",
     "@nextui-org/code": "2.0.24",
     "@nextui-org/divider": "^2.0.25",
+    "@nextui-org/dropdown": "^2.1.16",
     "@nextui-org/input": "^2.1.16",
     "@nextui-org/kbd": "2.0.25",
     "@nextui-org/link": "2.0.26",
@@ -25,6 +27,7 @@
     "@nextui-org/switch": "2.0.25",
     "@nextui-org/system": "2.0.15",
     "@nextui-org/theme": "2.1.17",
+    "@nextui-org/user": "^2.0.25",
     "@prisma/client": "^5.10.1",
     "@react-aria/ssr": "^3.8.0",
     "@react-aria/visually-hidden": "^3.8.10",
@@ -39,6 +42,7 @@
     "eslint-config-next": "14.0.2",
     "framer-motion": "^10.16.4",
     "intl-messageformat": "^10.5.0",
+    "jose": "^5.2.2",
     "next": "14.0.2",
     "next-themes": "^0.2.1",
     "postcss": "8.4.31",
@@ -50,7 +54,8 @@
     "tailwind-variants": "^0.1.18",
     "tailwindcss": "3.3.5",
     "typescript": "5.0.4",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zustand": "^4.5.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2"

@@ -1,20 +1,23 @@
 import React from "react"
+import { useUserStore } from "@/services/stores/user.store"
 
 interface LayoutProps {
     student: React.ReactNode,
     teacher: React.ReactNode,
 }
 
-const getUserRole = ():string => {
-    return 'teacher'
+const getUserRole = async ():Promise<string> => {
+    const { user } = await useUserStore.getState()
+    console.log(user?.role)
+    return String(user?.role)
 }
 
-function layout({ student, teacher }: LayoutProps) {
-    const userRole:string = getUserRole()
+async function layout({ student, teacher }: LayoutProps) {
+    const userRole = await getUserRole()
     return (
         <>
         {
-            userRole === 'student' ?  student  :  teacher 
+            userRole === 'role_1' ?  student  :  teacher 
         }
         </>
     )
