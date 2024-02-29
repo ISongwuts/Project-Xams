@@ -7,19 +7,19 @@ export const Logo: React.FC<IconSvgProps> = ({
 	height,
 	...props
 }) => (
-<svg
-    fill="none"
-    height={size || height}
-    viewBox="0 0 24 24"
-    width={size || width}
-    {...props}
->
-    <path
-        d="M4.5 4.5l15 15M19.5 4.5l-15 15"
-        stroke="currentColor"
-        strokeWidth="3"
-    />
-</svg>
+	<svg
+		fill="none"
+		height={size || height}
+		viewBox="0 0 24 24"
+		width={size || width}
+		{...props}
+	>
+		<path
+			d="M4.5 4.5l15 15M19.5 4.5l-15 15"
+			stroke="currentColor"
+			strokeWidth="3"
+		/>
+	</svg>
 
 
 );
@@ -213,3 +213,156 @@ export const NextUILogo: React.FC<IconSvgProps> = (props) => {
 		</svg>
 	);
 };
+
+export const SendCheckFilledIcon = ({
+	size = 24,
+	width,
+	height,
+	...props
+}: IconSvgProps) => (
+	<svg
+		aria-hidden="true"
+		focusable="false"
+		height={size || height}
+		role="presentation"
+		viewBox="0 0 16 16"
+		width={size || width}
+		{...props}
+	>
+		<g fill="currentColor">
+			<path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26l.001.002l4.995 3.178l1.59 2.498C8 14 8 13 8 12.5a4.5 4.5 0 0 1 5.026-4.47zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215l7.494-7.494l1.178-.471z"></path>
+			<path d="M16 12.5a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0m-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95l-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686"></path>
+		</g>
+	</svg>
+);
+
+export const VerifyFilledIcon = ({
+	size = 24,
+	width,
+	height,
+	...props
+}: IconSvgProps) => (
+	<svg
+		aria-hidden="true"
+		focusable="false"
+		height={size || height}
+		role="presentation"
+		viewBox="0 0 24 24"
+		width={size || width}
+		{...props}
+	>
+		<g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
+			<path strokeDasharray={60} strokeDashoffset={60} d="M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12Z">
+				<animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"></animate>
+			</path>
+			<path strokeDasharray={14} strokeDashoffset={14} d="M8 12L11 15L16 10">
+				<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="14;0"></animate>
+			</path>
+		</g>
+	</svg>
+);
+
+export const InvalidFilledIcon = ({
+	size = 24,
+	width,
+	height,
+	...props
+}: IconSvgProps) => (
+	<svg
+		aria-hidden="true"
+		focusable="false"
+		height={size || height}
+		role="presentation"
+		viewBox="0 0 24 24"
+		width={size || width}
+		{...props}
+	>
+		<g fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth={2}>
+			<path strokeDasharray={60} strokeDashoffset={60} d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z">
+				<animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"></animate>
+			</path>
+			<path strokeDasharray={8} strokeDashoffset={8} d="M12 12L16 16M12 12L8 8M12 12L8 16M12 12L16 8">
+				<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="8;0"></animate>
+			</path>
+		</g>
+	</svg>
+);
+
+export const EyeFilledIcon = ({
+	size = 24,
+	width,
+	height,
+	...props
+}: IconSvgProps) => (
+	<svg
+		aria-hidden="true"
+		focusable="false"
+		height={size || height}
+		role="presentation"
+		viewBox="0 0 24 24"
+		width={size || width}
+		{...props}
+	>
+		<defs>
+			<clipPath id="lineMdWatchLoop0">
+				<rect width={24} height={12}></rect>
+			</clipPath>
+			<symbol id="lineMdWatchLoop1">
+				<path fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M23 16.5C23 10.4249 18.0751 5.5 12 5.5C5.92487 5.5 1 10.4249 1 16.5z" clipPath="url(#lineMdWatchLoop0)">
+					<animate attributeName="d" dur="6s" keyTimes="0;0.07;0.93;1" repeatCount="indefinite" values="M23 16.5C23 11.5 18.0751 12 12 12C5.92487 12 1 11.5 1 16.5z;M23 16.5C23 10.4249 18.0751 5.5 12 5.5C5.92487 5.5 1 10.4249 1 16.5z;M23 16.5C23 10.4249 18.0751 5.5 12 5.5C5.92487 5.5 1 10.4249 1 16.5z;M23 16.5C23 11.5 18.0751 12 12 12C5.92487 12 1 11.5 1 16.5z"></animate>
+				</path>
+			</symbol>
+			<mask id="lineMdWatchLoop2">
+				<use href="#lineMdWatchLoop1"></use>
+				<use href="#lineMdWatchLoop1" transform="rotate(180 12 12)"></use>
+				<circle cx={12} cy={12} r={0} fill="#fff">
+					<animate attributeName="r" dur="6s" keyTimes="0;0.03;0.97;1" repeatCount="indefinite" values="0;3;3;0"></animate>
+				</circle>
+			</mask>
+		</defs>
+		<rect width={24} height={24} fill="currentColor" mask="url(#lineMdWatchLoop2)"></rect>
+	</svg>
+);
+
+export const EyeOffFilledIcon = ({
+	size = 24,
+	width,
+	height,
+	...props
+}: IconSvgProps) => (
+	<svg
+		aria-hidden="true"
+		focusable="false"
+		height={size || height}
+		role="presentation"
+		viewBox="0 0 24 24"
+		width={size || width}
+		{...props}
+	>
+		<defs>
+			<clipPath id="lineMdWatchOffLoop0">
+				<rect width={24} height={12}></rect>
+			</clipPath>
+			<symbol id="lineMdWatchOffLoop1">
+				<path fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M23 16.5C23 10.4249 18.0751 5.5 12 5.5C5.92487 5.5 1 10.4249 1 16.5z" clipPath="url(#lineMdWatchOffLoop0)">
+					<animate attributeName="d" dur="6s" keyTimes="0;0.07;0.93;1" repeatCount="indefinite" values="M23 16.5C23 11.5 18.0751 12 12 12C5.92487 12 1 11.5 1 16.5z;M23 16.5C23 10.4249 18.0751 5.5 12 5.5C5.92487 5.5 1 10.4249 1 16.5z;M23 16.5C23 10.4249 18.0751 5.5 12 5.5C5.92487 5.5 1 10.4249 1 16.5z;M23 16.5C23 11.5 18.0751 12 12 12C5.92487 12 1 11.5 1 16.5z"></animate>
+				</path>
+			</symbol>
+			<mask id="lineMdWatchOffLoop2">
+				<use href="#lineMdWatchOffLoop1"></use>
+				<use href="#lineMdWatchOffLoop1" transform="rotate(180 12 12)"></use>
+				<circle cx={12} cy={12} r={0} fill="#fff">
+					<animate attributeName="r" dur="6s" keyTimes="0;0.03;0.97;1" repeatCount="indefinite" values="0;3;3;0"></animate>
+				</circle>
+				<g fill="none" strokeDasharray={26} strokeDashoffset={26} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} transform="rotate(45 13 12)">
+					<path stroke="#000" d="M0 11h24"></path>
+					<path stroke="#fff" d="M0 13h22">
+						<animate attributeName="d" dur="6s" repeatCount="indefinite" values="M0 13h22;M2 13h22;M0 13h22"></animate>
+					</path>
+					<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="26;0"></animate>
+				</g>
+			</mask>
+		</defs>
+		<rect width={24} height={24} fill="currentColor" mask="url(#lineMdWatchOffLoop2)"></rect>
+	</svg>
+);

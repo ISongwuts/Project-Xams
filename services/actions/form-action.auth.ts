@@ -5,6 +5,8 @@ import { prisma } from "../utils/prismaInstance"
 import { Prefix, Role } from "@prisma/client"
 import bcrypt from 'bcrypt'
 import { login } from "../libs/auth.lib"
+import { FieldValue, SubmitHandler } from "react-hook-form"
+import { ExistsResponse } from "@/types"
 
 // Define the type for the authentication action response
 type authActionType = {
@@ -16,7 +18,7 @@ type authActionType = {
 }
 
 // Define the authentication action function
-export default async function authAction(formValue: any, isSignIn: boolean, role:string): Promise<authActionType> {
+export async function SignInAction(formValue: any, isSignIn: boolean, role: string): Promise<authActionType> {
     try {
         // Handle sign-in action
         if (isSignIn) {
@@ -108,3 +110,28 @@ export default async function authAction(formValue: any, isSignIn: boolean, role
     }
 }
 
+export const usernameIsExist = async (formData: any): Promise<ExistsResponse> => {
+    await new Promise(resolve => setTimeout(resolve, 750));
+    try {
+        const { username } : { username: string } = formData
+        const user: object[] = await prisma.users.findMany({
+            where: {
+                username: username
+            }
+        })
+        const userIsExist: boolean = user.length > 0
+        console.log(userIsExist)
+        return {
+            status: { ok: userIsExist },
+            message: userIsExist ? 'This is username already exists.' : 'You can use this username.'
+        }
+    } catch (error: any) {
+        return {
+            status: { ok: false },
+            message: error.message
+        }
+    } finally {
+        // Close Prisma client connection to prevent resource leaks
+        await prisma.$disconnect()
+    }
+}

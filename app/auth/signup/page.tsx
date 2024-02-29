@@ -1,7 +1,7 @@
 import React from 'react'
-import FormCard from '@/components/FormCard'
+import FormCard from '@/components/forms/signup-formcard'
 import { siteConfig } from '@/config/site'
-import { signUpSchema } from '@/services/validation/schema'
+import { infomationSchema } from '@/services/validation/schema'
 
 function page() {
     
@@ -14,7 +14,7 @@ function page() {
                 isSignIn={false} 
                 toPath='/auth/signin'
                 sideCard={siteConfig.formConfig.signUpForm.sideCard}
-                schema={signUpSchema}
+                schema={infomationSchema}
             />
         </div>
     )

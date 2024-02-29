@@ -35,3 +35,11 @@ export const sessionOptions: SessionOptions = {
 
   }
 }
+
+
+interface ExistsResponse {
+  status: {
+      ok: boolean
+  },
+  message: string
+}

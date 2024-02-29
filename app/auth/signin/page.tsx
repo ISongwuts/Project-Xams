@@ -1,5 +1,5 @@
 import React from 'react'
-import FormCard from '@/components/FormCard'
+import FormCard from '@/components/forms/signin-formcard'
 import { siteConfig } from '@/config/site'
 import { signInSchema } from '@/services/validation/schema'
 

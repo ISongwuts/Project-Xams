@@ -8,17 +8,17 @@ import { Button, ButtonGroup } from '@nextui-org/button'
 import { Link } from '@nextui-org/link'
 import { Checkbox } from '@nextui-org/checkbox'
 import { useRouter } from 'next/navigation'
-import { Slide, FadeIn } from './animation/animation'
+import { Slide, FadeIn } from '../animation/animation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ZodSchema } from 'zod'
-import authAction from '@/services/actions/form-action.auth'
 import { RadioGroup } from '@nextui-org/radio'
-import { CustomRadio } from './custom/CustomRadio'
+import { CustomRadio } from '../customs/CustomRadio'
 import { cn } from '@nextui-org/system'
 import { Select, SelectItem } from '@nextui-org/select'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { SignInAction } from '@/services/actions/form-action.auth'
 
 interface PropsType {
     title: string,
@@ -55,7 +55,7 @@ function FormCard(props: PropsType) {
 
     const onPassingToAuthAction = async (formValue: any) => {
         console.log(formValue)
-        const response = await authAction(formValue, props.isSignIn, role)
+        const response = await SignInAction(formValue, props.isSignIn, role)
 
         if(response.status.ok){
             toast.success(response.message)
