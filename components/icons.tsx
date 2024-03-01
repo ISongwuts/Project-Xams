@@ -366,3 +366,52 @@ export const EyeOffFilledIcon = ({
 		<rect width={24} height={24} fill="currentColor" mask="url(#lineMdWatchOffLoop2)"></rect>
 	</svg>
 );
+
+export const ErrorFilledIcon = ({
+	size = 24,
+	width,
+	height,
+	...props
+}: IconSvgProps) => (
+	<svg
+		aria-hidden="true"
+		focusable="false"
+		height={size || height}
+		role="presentation"
+		viewBox="0 0 24 24"
+		width={size || width}
+		{...props}
+	>
+		<path fill="none" stroke="currentColor" strokeDasharray={12} strokeDashoffset={12} strokeLinecap="round" strokeWidth={2} d="M12 12L19 19M12 12L5 5M12 12L5 19M12 12L19 5">
+			<animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="12;0"></animate>
+		</path>
+
+	</svg>
+);
+
+export const CancelFilledIcon = ({
+	size = 24,
+	width,
+	height,
+	...props
+}: IconSvgProps) => (
+	<svg
+		aria-hidden="true"
+		focusable="false"
+		height={size || height}
+		role="presentation"
+		viewBox="0 0 24 24"
+		width={size || width}
+		{...props}
+	>
+		<g fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth={2}>
+			<path strokeDasharray={60} strokeDashoffset={60} d="M5.63604 5.63603C9.15076 2.12131 14.8492 2.12131 18.364 5.63603C21.8787 9.15075 21.8787 14.8492 18.364 18.364C14.8492 21.8787 9.15076 21.8787 5.63604 18.364C2.12132 14.8492 2.12132 9.15075 5.63604 5.63603Z">
+				<animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"></animate>
+			</path>
+			<path strokeDasharray={18} strokeDashoffset={18} d="M6 6L18 18">
+				<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="18;0"></animate>
+			</path>
+		</g>
+
+	</svg>
+);

@@ -27,7 +27,7 @@ export interface UserType {
 }
 
 export const sessionOptions: SessionOptions = {
-  password: process.env.COOKIES_SECRET! ,
+  password: process.env.COOKIES_SECRET!,
   cookieName: 'session',
   cookieOptions: {
     httpOnly: true,
@@ -35,11 +35,23 @@ export const sessionOptions: SessionOptions = {
 
   }
 }
+interface QuestionType {
+  number: number,
+  type: string,
+  title: string,
+  desc: string,
+  image: [],
+  choices: [{
+    desc: string,
+    score: number
+  }],
+  questionScore: number
+}
 
 
 interface ExistsResponse {
   status: {
-      ok: boolean
+    ok: boolean
   },
   message: string
 }

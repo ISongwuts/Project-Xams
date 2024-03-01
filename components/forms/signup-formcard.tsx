@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ZodSchema } from 'zod'
 import UsernameValidationForm from './step-form-validation/username-form'
-import PasswordValidationForm from './step-form-validation/password-form'
+import InfomationValidationForm from './step-form-validation/infomation-form'
 import { usernameIsExist } from '@/services/actions/form-action.auth'
 import { RadioGroup } from '@nextui-org/radio'
 import { CustomRadio } from '../customs/CustomRadio'
@@ -52,18 +52,16 @@ function FormCard(props: PropsType) {
     } = useForm({
         resolver: zodResolver(props.schema),
     })
-    const prefixs = ['นาย', 'นาง', 'นางสาว', "Mr.", "Mrs.", "Ms.", "Miss"]
     const [role, setRole] = useState<string>('')
     const [stepValidation, setStepValidation] = useState<number>(0)
     const [disabled, setDisabled] = useState<boolean>(true)
     const stepValidationRenderer: ReactElement[] = [
-        <UsernameValidationForm setDiabled={setDisabled} />, 
-        <PasswordValidationForm setDiabled={setDisabled} />
+        <UsernameValidationForm setDiabled={setDisabled} />,
+        <InfomationValidationForm setDiabled={setDisabled} />
     ]
 
-    const onNextHandler = (e:React.MouseEvent) => {
-        setStepValidation(prev => prev + 1)
-        setDisabled(true)
+    const onNextHandler = (e: React.MouseEvent) => {
+        setStepValidation(prev => stepValidation == 1 ? prev : prev + 1)
     }
 
     return (
@@ -79,8 +77,14 @@ function FormCard(props: PropsType) {
                     className='w-full flex flex-col gap-2 justify-center px-8'>
 
                     <ButtonGroup aria-label='btn-group'>
-                        {stepValidation > 0 && <Button type='submit' className='text-[#eee]' onClick={(e) => setStepValidation(prev => prev - 1)}>Previous</Button>}
-                        <Button disabled={disabled} type='submit' className={`${disabled ? ' cursor-not-allowed' : 'bg-primary-gradient'} text-[#eee]`} onClick={(e) => onNextHandler(e)}>Next</Button>
+                        {stepValidation > 0 && <Button type='submit' onClick={(e) => setStepValidation(prev => prev - 1)}>Previous</Button>}
+                        <Button
+                            disabled={disabled}
+                            type='submit'
+                            className={`${disabled ? ' cursor-not-allowed' : 'bg-primary-gradient'} text-[#eee]`}
+                            onClick={(e) => onNextHandler(e)}>
+                            { stepValidation == 1 ? 'Submit' : 'Next' }
+                        </Button>
                         {stepValidation == 0 && <Button onClick={() => router.push(props.toPath)}>{props.isSignIn ? 'Not a member ?' : 'Already member ?'}</Button>}
                     </ButtonGroup>
                     {

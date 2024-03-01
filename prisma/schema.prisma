@@ -33,7 +33,6 @@ model users {
   last_name String @db.VarChar(50)
   password String @db.VarChar(255)
   tel String @db.VarChar(10)
-  personal_id String @db.VarChar(20)
   role Role?
   createAt DateTime @default(now())
 }
