@@ -7,7 +7,6 @@ type PropsType = {
     isOpen: boolean,
     onOpen: () => void,
     imageSource: string,
-    alt: string
 }
 
 function ImageModal(props:PropsType) {
@@ -16,9 +15,9 @@ function ImageModal(props:PropsType) {
             <ModalContent>
                 {(onClose) => (
                     <>
-                        <ModalHeader className="flex flex-col items-center"><p className='text-base'>{props.alt}</p></ModalHeader>
-                        <ModalBody>
-                            <img src={props.imageSource} alt={props.alt}/>
+                        <ModalHeader className="flex flex-col items-center"><p className='text-base'>Image Preview</p></ModalHeader>
+                        <ModalBody className='flex justify-center'>
+                            <Image width={500} height={500} src={props.imageSource} alt='popup-image'/>
                         </ModalBody>
                         <ModalFooter>
                             <Button color="danger" variant="light" onPress={onClose}>

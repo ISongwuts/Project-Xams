@@ -8,7 +8,6 @@ interface LayoutProps {
 
 const getUserRole = async ():Promise<string> => {
     const { user } = await useUserStore.getState()
-    console.log(user?.role)
     return String(user?.role)
 }
 

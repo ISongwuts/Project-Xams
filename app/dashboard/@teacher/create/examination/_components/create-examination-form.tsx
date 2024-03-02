@@ -14,7 +14,24 @@ function CreateExaminationForm() {
         setCreator,
         setStatus,
         setCurrentQuestion,
+        addQuestion,
     } = useCreateExaminationStore()
+
+    const onQuestionAdding = (value: string) => {
+        const amount = Number.parseInt(value);
+        const questionLength = createData.questions.length
+        if (amount > questionLength) {
+            for (let i: number = 0; i < (amount - questionLength); i++) {
+                addQuestion();
+            }
+        }else{
+            for (let i: number = 0; i < (questionLength - amount); i++) {
+                createData.questions.pop();
+            }
+        }
+        setExaminationAmount(amount);
+    }
+
     return (
         <div className='flex flex-col gap-8'>
             <Card className='h-fit sticky'>
@@ -33,7 +50,7 @@ function CreateExaminationForm() {
                                 type='number'
                                 defaultValue='0'
                                 min={0}
-                                onValueChange={(value) => setExaminationAmount(Number.parseInt(value))}
+                                onValueChange={(value) => onQuestionAdding(value)}
                             />
                             <Input
                                 variant='bordered'
@@ -73,7 +90,7 @@ function CreateExaminationForm() {
                     <div className={`flex flex-wrap max-sm:grid-cols-8 gap-4 p-2 ${createData.examinationAmount <= 0 && 'justify-center'}`}>
                         {createData.examinationAmount > 0 ?
                             Array.from({ length: createData.examinationAmount }).map((_, index) =>
-                                <Button key={index} className={`${createData.current == index + 1 && 'bg-primary-gradient text-white'}`} size='sm' isIconOnly onPress={(e) => setCurrentQuestion(index + 1)}>{index + 1}</Button>
+                                <Button key={index} className={`${createData.current == index && 'bg-primary-gradient text-white'}`} size='sm' isIconOnly onPress={(e) => setCurrentQuestion(index)}>{index + 1}</Button>
                             ) : <span className='text-center'>Empty Navigation</span>
                         }
                     </div>
